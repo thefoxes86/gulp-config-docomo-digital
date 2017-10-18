@@ -16,7 +16,7 @@ var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 
-var conf = require('./conf');
+var base = require('./base');
 
 gulp.task('hybrid:clean', function(done){
     del(['hybrid/www/*'], { force: true }).then(function(){ done(); });
@@ -56,12 +56,12 @@ gulp.task('hybrid:installnpmmodules', ['hybrid:initpath'], function(done){
 });
 
 gulp.task('hybrid:transformindex', ['loadconfig', 'loaddict', 'loadfooter', 'hybrid:copymanifest'], function(){
-    return gulp.src('app/' + conf.indexPage)
+    return gulp.src('app/' + base.indexPage)
     .pipe(removecode({ stage: true, hybrid: true }))
     .pipe(replace('<TMPL_VAR NAME=CONFIG>', JSON.stringify(vhost)))
-    .pipe(replace('<TMPL_VAR NAME=CONFIGOVERRIDEHYBRID>', JSON.stringify(conf.customConfig.config)))
-    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(conf.dict)))
-    .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(conf.footer)))
+    .pipe(replace('<TMPL_VAR NAME=CONFIGOVERRIDEHYBRID>', JSON.stringify(base.vhostCustom.config)))
+    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(base.dict)))
+    .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(base.footer)))
     .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'?>/gim, '<%= config.$1 %>'))
     .pipe(replace(/<TMPL_IF NAME="?'?(.*?)"?'?>/gim, '<% if (config.$1) { %>'))
     .pipe(replace(/<TMPL_UNLESS NAME="?'?(.*?)"?'?>/gim, '<% if (!config.$1) { %>'))
@@ -69,7 +69,7 @@ gulp.task('hybrid:transformindex', ['loadconfig', 'loaddict', 'loadfooter', 'hyb
     .pipe(replace(/<\/TMPL_IF>/gim, '<% } %>'))
     .pipe(replace(/<\/TMPL_UNLESS>/gim, '<% } %>'))
     .pipe(replace(/<\/TMPL_ELSE>/gim, '<% } %>'))
-    .pipe(ejs({ config: conf.vhost }))
+    .pipe(ejs({ config: base.vhost }))
     .pipe(rename('index-stage.html'))
     .pipe(gulp.dest('app/'));
 });

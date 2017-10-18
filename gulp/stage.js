@@ -5,15 +5,15 @@ var ejs = require('gulp-ejs');
 var rename = require('gulp-rename');
 var webserver = require('gulp-webserver');
 
-var conf = require('./conf');
+var base = require('./base');
 
 gulp.task('stage:single', ['loadconfig', 'loaddict', 'loadfooter', 'less'], function(){
-    gulp.src('app/' + conf.indexPage)
+    gulp.src('app/' + base.indexPage)
     .pipe(removecode({ stage: true }))
     .pipe(replace('node_modules/', '../node_modules/'))
-    .pipe(replace('<TMPL_VAR NAME=CONFIG>', JSON.stringify(conf.vhost)))
-    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(conf.dict)))
-    .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(conf.footer)))
+    .pipe(replace('<TMPL_VAR NAME=CONFIG>', JSON.stringify(base.vhost)))
+    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(base.dict)))
+    .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(base.footer)))
     .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'?>/gim, '<%= config.$1 %>'))
     .pipe(replace(/<TMPL_IF NAME="?'?(.*?)"?'?>/gim, '<% if (config.$1) { %>'))
     .pipe(replace(/<TMPL_UNLESS NAME="?'?(.*?)"?'?>/gim, '<% if (!config.$1) { %>'))
@@ -21,7 +21,7 @@ gulp.task('stage:single', ['loadconfig', 'loaddict', 'loadfooter', 'less'], func
     .pipe(replace(/<\/TMPL_IF>/gim, '<% } %>'))
     .pipe(replace(/<\/TMPL_UNLESS>/gim, '<% } %>'))    
     .pipe(replace(/<\/TMPL_ELSE>/gim, '<% } %>'))
-    .pipe(ejs({ config: conf.vhost }))
+    .pipe(ejs({ config: base.vhost }))
     .pipe(rename('index-stage.html'))
     .pipe(gulp.dest('app/'));
 });
@@ -30,11 +30,11 @@ gulp.task('stage', ['stage:single'], function(){
     gulp.src('.')
     .pipe(webserver({
         port: 3000,
-        open: conf.customConfig.stageURL + '/app/index-stage.html',
+        open: base.vhostCustom.stageURL + '/app/index-stage.html',
         proxies: {
             source: '/js/wl/webstore_news/app/',
             target: '/app'
         }
     }));
-    gulp.watch(['app/' + conf.indexPage, '../css/**/*.*', 'custom.json'], ['stage:single']);
+    gulp.watch(['app/' + base.indexPage, '../css/**/*.*', 'custom.json'], ['stage:single']);
 });

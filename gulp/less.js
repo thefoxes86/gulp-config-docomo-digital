@@ -5,7 +5,7 @@ var less = require('gulp-less');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 
-var conf = require('./conf');
+var base = require('./base');
 
 gulp.task('less:constantsImages', function(done){
     var buffer = '// CREATED BY GULP, DON\'T COMMIT OR EDIT THIS FILE \n';
@@ -33,7 +33,7 @@ gulp.task('less:constantsImages', function(done){
 });
 
 gulp.task('less:copyapp', ['loadconfig'], function(){
-    gulp.src('../css/' + conf.vhost.LESS_CSS_NAME)
+    gulp.src('../css/' + base.vhost.LESS_CSS_NAME)
     .pipe(replace(/'.\//gim, '\'../'))
     .pipe(replace(/@import 'custom_css.conf'/gim, '@import \'./local.less\''))
     .pipe(replace(/@import '@{bower_import}'/gim, '@import \'./constants_images.less\''))
