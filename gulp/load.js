@@ -11,9 +11,9 @@ var requireUncached = function(moduleName) {
 
 gulp.task('loadcustom', function(done){
     if(process.argv[2].indexOf('hybrid') !== -1){
-        base.vhostCustom = requireUncached(process.cwd() + '/hybrid.json');
+        base.vhostCustom = requireUncached(process.cwd() + '/gulp/hybrid.json');
     } else {
-        base.vhostCustom = requireUncached(process.cwd() + '/custom.json');
+        base.vhostCustom = requireUncached(process.cwd() + '/gulp/local.json');
     }
     done();
 });
