@@ -7,7 +7,7 @@ var webserver = require('gulp-webserver');
 
 var conf = require('./conf');
 
-gulp.task('stage:single', ['loadconfig', 'loaddict', 'loadfooter'], function(){
+gulp.task('stage:single', ['loadconfig', 'loaddict', 'loadfooter', 'less'], function(){
     gulp.src('app/' + conf.indexPage)
     .pipe(removecode({ stage: true }))
     .pipe(replace('node_modules/', '../node_modules/'))
