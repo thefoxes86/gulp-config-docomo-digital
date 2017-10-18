@@ -1,4 +1,4 @@
-require('./gulp/conf');
+require('./gulp/base');
 require('./gulp/crtolf');
 require('./gulp/eslint');
 require('./gulp/load');
