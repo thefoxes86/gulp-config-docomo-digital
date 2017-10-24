@@ -17,9 +17,10 @@ gulp.task('less:constantsImages', function(done){
                 .replace(/ :/gim, ':')
                 .replace(/: /gim, ':')
                 .replace(/":/gim, ':')
-                .replace(/:"/gim, ':\'' + base.vhostCustom.imagePrefix)
-                .replace(/",/gim, '\'')
+                .replace(/    /gim, '\t')
                 .replace(/\t"/gim, '@')
+                .replace(/:"/gim, ':"' + base.vhostCustom.imagePrefix)
+                .replace(/",/gim, '"')
                 .trim();
             buffer += ';';
             buffer += '\n';
