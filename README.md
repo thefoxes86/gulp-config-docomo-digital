@@ -5,6 +5,7 @@
 - create a void file into css/gulp/local.less
 - create files **js/gulp/local.json** and **js/gulp/hybrid.json** with minimal configuration:
 
+<code>
     {
         "domain": "http://www.mydomain.com",
         "stageURL": "http://www.mydomain.com",
@@ -14,10 +15,11 @@
         },
         "dictionary": {}
     }
+</code>
 
 ## tasks
 
-- *gulp lint* : run eslint on JavaScript files on app/ folder
+- *gulp lint* : run eslint on JavaScript files on app/ folder (if you add --fix then eslint fix some possible errors)
 - *gulp crtolf* : convert cr to lf
 - *gulp stage* : run local server to debug app/ folder (set config.json before, if necessary)
 - *gulp build* : create build (minified and map) into dist/ folder
