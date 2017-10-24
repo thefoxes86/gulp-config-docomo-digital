@@ -9,6 +9,7 @@
     {
         "domain": "http://www.mydomain.com",
         "stageURL": "http://www.mydomain.com",
+        "imagePrefix": "//d.motime.com/news/img/",
         "config": {
             "JS_INDEX_PAGE": "index",
             "LESS_CSS_NAME": "app.less"
