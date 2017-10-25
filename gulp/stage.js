@@ -37,5 +37,5 @@ gulp.task('stage', ['stage:single'], function(){
         }
     }));
     gulp.watch(['app/' + base.indexPage, 'gulp/local.json'], ['stage:single']);
-    gulp.watch(['../css/**/*.*', '!../css/gulp/*.*'], ['less']);
+    gulp.watch(['../css/**/*.*', '!../css/gulp/*.*', '../css/gulp/local.less'], ['less']);
 });

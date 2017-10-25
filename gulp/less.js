@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var del = require('del');
 var lineReader = require('readline');
 var fs = require('fs');
 var less = require('gulp-less');
@@ -8,7 +9,15 @@ var insert = require('gulp-insert');
 
 var base = require('./base');
 
-gulp.task('less:constantsImages', function(done){
+gulp.task('less:clean', function(done){
+    del([
+        '../css/gulp/app-stage.less', 
+        '../css/gulp/constants_images.less', 
+        'app/app-stage.css'
+    ], { force: true }).then(function(){ done(); });
+});
+
+gulp.task('less:constantsImages', ['less:clean'], function(done){
     var buffer = '// CREATED BY GULP, DON\'T COMMIT OR EDIT THIS FILE \n';
     lineReader.createInterface({
         input: fs.createReadStream(process.cwd() + '/../css/constants_images.conf')
@@ -34,7 +43,7 @@ gulp.task('less:constantsImages', function(done){
     });
 });
 
-gulp.task('less:copyapp', ['loadconfig'], function(){
+gulp.task('less:copyapp', ['loadconfig', 'less:clean'], function(){
     gulp.src('../css/' + base.vhost.LESS_CSS_NAME)
     .pipe(replace(/'.\//gim, '\'../'))
     .pipe(replace(/@import 'custom_css.conf'/gim, ''))
