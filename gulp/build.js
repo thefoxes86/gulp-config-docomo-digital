@@ -13,6 +13,8 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var lec = require('gulp-line-ending-corrector');
 
+var base = require('./base');
+
 gulp.task('build:clean', ['lint'], function(done){
     del(['dist/**/*.*'], { force: true }).then(function(){ done(); });
 });
@@ -20,11 +22,11 @@ gulp.task('build:clean', ['lint'], function(done){
 gulp.task('build:mergehtml', ['build:clean'], function(){
     return gulp.src(['app/**/*.html', '!app/bower_components/**/*.html', '!app/index*.html'])
      .pipe(ngTemplate({
-         module: 'news',
+         module: base.vhostCustom.mainAngularModule,
          standalone: false,
          filename: 'templates.js',
          path: function (path, base) {
-             return '/js/wl/webstore_news/app/' + path.replace(base, '');
+             return base.vhostCustom.jsPath + path.replace(base, '');
          }
      }))
      .pipe(gulp.dest('dist/'));
