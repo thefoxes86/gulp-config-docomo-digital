@@ -37,9 +37,10 @@ gulp.task('less:constantsImages', function(done){
 gulp.task('less:copyapp', ['loadconfig'], function(){
     gulp.src('../css/' + base.vhost.LESS_CSS_NAME)
     .pipe(replace(/'.\//gim, '\'../'))
-    .pipe(replace(/@import 'custom_css.conf'/gim, '@import \'./local.less\''))
+    .pipe(replace(/@import 'custom_css.conf'/gim, ''))
     .pipe(replace(/@import '@{bower_import}'/gim, ''))
     .pipe(insert.prepend('@import \'./constants_images.less\'; \n\n'))
+    .pipe(insert.append('\n\n @import \'./local.less\';'))
     .pipe(rename('app-stage.less'))
     .pipe(gulp.dest('../css/gulp/'));
 });
