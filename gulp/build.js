@@ -19,20 +19,25 @@ gulp.task('build:clean', ['lint'], function(done){
     del(['dist/**/*.*'], { force: true }).then(function(){ done(); });
 });
  
-gulp.task('build:mergehtml', ['build:clean'], function(){
-    return gulp.src(['app/**/*.html', '!app/bower_components/**/*.html', '!app/index*.html'])
-     .pipe(ngTemplate({
-         module: base.vhostCustom.mainAngularModule,
-         standalone: false,
-         filename: 'templates.js',
-         path: function (path, base) {
-             return base.vhostCustom.jsPath + path.replace(base, '');
-         }
-     }))
-     .pipe(gulp.dest('dist/'));
+gulp.task('build:html', ['build:clean'], function(){
+    if(base.vhostCustom.mergeHtml){
+        return gulp.src(['app/**/*.html', '!app/index*.html'])
+        .pipe(ngTemplate({
+            module: base.vhostCustom.mainAngularModule,
+            standalone: false,
+            filename: 'templates.js',
+            path: function (path, base) {
+                return base.vhostCustom.jsPath + path.replace(base, '');
+            }
+        }))
+        .pipe(gulp.dest('dist/'));
+    } else {
+        return gulp.src(['app/**/*.html', '!app/index*.html'])
+        .pipe(gulp.dest('dist/'));
+    }    
 });
  
-gulp.task('build', ['build:mergehtml'], function () {
+gulp.task('build', ['build:html'], function () {
     var jsFilter = filter('**/*.js', { restore: true });
     var cssFilter = filter('**/*.css', { restore: true });
     var htmlFilter = filter('**/*.html', { restore: true });
