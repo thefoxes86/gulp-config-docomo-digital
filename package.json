@@ -1,6 +1,6 @@
 {
   "name": "gulp-config-docomo-digital",
-  "version": "3.0.0-9",
+  "version": "3.0.0-10",
   "description": "Gulpfile configuration for Docomo Digital front-end team",
   "main": "index.js",
   "scripts": {
