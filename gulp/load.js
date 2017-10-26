@@ -25,7 +25,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
         var xhrConfig = new XMLHttpRequest();
         xhrConfig.onload = function(){
             base.config = merge(base.config, JSON.parse(this.responseText));
-            base.config = merge(base.config, overrideJSON.config);
+            base = merge(base, overrideJSON);
             base.loadedConfig = true;
             done();
         };
@@ -41,7 +41,7 @@ gulp.task('loaddict', ['loadcustom'], function(done){
         var xhrDict = new XMLHttpRequest();
         xhrDict.onload = function(){
             base.dictionary = merge(base.dictionary, JSON.parse(this.responseText));
-            base.dictionary = merge(base.dictionary, overrideJSON.dictionary);
+            base = merge(base, overrideJSON);
             base.loadedDict = true;
             done();
         };
@@ -57,6 +57,7 @@ gulp.task('loadfooter', ['loadcustom'], function(done){
         var xhrFooter = new XMLHttpRequest();
         xhrFooter.onload = function(){
             base.footer = merge(base.footer, JSON.parse(this.responseText));
+            base = merge(base, overrideJSON);
             base.loadedFooter = true;
             done();
         };

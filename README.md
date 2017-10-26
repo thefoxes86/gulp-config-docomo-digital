@@ -16,12 +16,18 @@ Configuration flags:
 - **config** : configuration keys will override configuration values taken from domain
 - **config** : dictionary keys will override dictionary values taken from domain
 
+## config, dict and footer
+
+Priority for configuration, dictionary and footer:
+1. gulp/config.json or hybrid.json
+2. domain configuration/dictionary/footer
+3. default values from this repository (see gulp/base.js)
 
 ## tasks
 
-- *gulp lint* : run eslint on JavaScript files on app/ folder (if you add --fix then eslint fix some possible errors)
-- *gulp crtolf* : convert cr to lf
-- *gulp stage* : run local server to debug app/ folder (set config.json before, if necessary)
-- *gulp build* : create build (minified and map) into dist/ folder
-- *gulp hybrid:stage* : create www for hybrid app into hybrid/www and run hybrid app on an android device connected; it need a proper cordova project in hybrid folder
-- *gulp hybrid:build* : create production www for hybrid app into hybrid/www and run hybrid app on an android device connected
+- **gulp lint** : run eslint on JavaScript files on app/ folder (if you add --fix then eslint fix some possible errors)
+- **gulp crtolf** : convert cr to lf
+- **gulp stage** : run local server to debug app/ folder (set config.json before, if necessary)
+- **gulp build** : create build (minified and map) into dist/ folder
+- **gulp hybrid:stage** : create www for hybrid app into hybrid/www and run hybrid app on an android device connected; it need a proper cordova project in hybrid folder
+- **gulp hybrid:build** : create production www for hybrid app into hybrid/www and run hybrid app on an android device connected
