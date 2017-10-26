@@ -31,7 +31,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
             base.loadedConfig = true;
             done();
         };
-        xhrConfig.open('get', overrideJSON.domain + '/v01/config.getvars?keys=' + overrideJSON.secret, true);
+        xhrConfig.open('get', overrideJSON.settings.domain + '/v01/config.getvars?keys=' + overrideJSON.settings.secret, true);
         xhrConfig.send();
     } else {
         done();
@@ -47,7 +47,7 @@ gulp.task('loaddict', ['loadcustom'], function(done){
             base.loadedDict = true;
             done();
         };
-        xhrDict.open('get', overrideJSON.domain + '/v01/dictionary.getlist', true);
+        xhrDict.open('get', overrideJSON.settings.domain + '/v01/dictionary.getlist', true);
         xhrDict.send();
     } else {
         done();
@@ -63,7 +63,7 @@ gulp.task('loadfooter', ['loadcustom'], function(done){
             base.loadedFooter = true;
             done();
         };
-        xhrFooter.open('get', overrideJSON.domain + '/v01/footer.getlist', true);
+        xhrFooter.open('get', overrideJSON.settings.domain + '/v01/footer.getlist', true);
         xhrFooter.send();
     } else {
         done();
