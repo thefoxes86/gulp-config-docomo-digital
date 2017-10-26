@@ -1,14 +1,17 @@
 {
     "domain": "http://es2.mcafeemultiaccess.com",
+    "secret": "123456789",
     "stageURL": "http://localhost:3000/", 
 	"imagePrefix": "//d.motime.com/lite/img/",  
+	"jsPrefix": "/js/wl/webstore_news/app/",  
 	"mainAngularModule": "news",  
-	"jsPath": "/js/wl/webstore_news/app/",  
     "mergeHtml": true,  
     "revCss": false,
+    
     "config": {
         "JS_INDEX_PAGE": "index",
         "LESS_CSS_NAME": "app.less"
     },
+    
     "dictionary": {}
 }

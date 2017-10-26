@@ -28,7 +28,7 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
             standalone: false,
             filename: 'templates.js',
             path: function (path, base) {
-                return base.vhostCustom.jsPath + path.replace(base, '');
+                return base.vhostCustom.jsPrefix + path.replace(base, '');
             }
         }))
         .pipe(gulp.dest('dist/'));

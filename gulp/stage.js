@@ -32,7 +32,7 @@ gulp.task('stage', ['stage:single'], function(){
         port: 3000,
         open: base.vhostCustom.stageURL + '/app/index-stage.html',
         proxies: {
-            source: base.vhostCustom.jsPath,
+            source: base.vhostCustom.jsPrefix,
             target: '/app'
         }
     }));

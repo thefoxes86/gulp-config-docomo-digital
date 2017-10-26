@@ -28,7 +28,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
             base.indexPage = base.vhost.JS_INDEX_PAGE + '.html';
             done();
         };
-        xhrConfig.open('get', base.vhostCustom.domain + '/v01/config.getvars?keys=poggioacaiano', true);
+        xhrConfig.open('get', base.vhostCustom.domain + '/v01/config.getvars?keys=' + base.vhostCustom.secret, true);
         xhrConfig.send();
     } else {
         base.vhost = merge(base.vhost, base.vhostCustom.config);
