@@ -12,6 +12,7 @@ var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var lec = require('gulp-line-ending-corrector');
+var gulpif = require('gulp-if');
 
 var base = require('./base');
 
@@ -52,6 +53,7 @@ gulp.task('build', ['build:html'], function () {
     
     .pipe(cssFilter)
     .pipe(cleanCSS())
+    .pipe(gulpif(base.vhostCustom.revCss, rev()))
     .pipe(cssFilter.restore)
  
     .pipe(jsFilter)

@@ -4,7 +4,8 @@
 	"imagePrefix": "//d.motime.com/lite/img/",  
 	"mainAngularModule": "news",  
 	"jsPath": "/js/wl/webstore_news/app/",  
-	"mergeHtml": true,  
+    "mergeHtml": true,  
+    "revCss": false,
     "config": {
         "JS_INDEX_PAGE": "index",
         "LESS_CSS_NAME": "app.less"
