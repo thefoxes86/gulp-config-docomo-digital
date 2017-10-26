@@ -4,6 +4,8 @@ var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 var base = require('./base');
 
+var overrideJSON;
+
 var requireUncached = function(moduleName) {
     delete require.cache[require.resolve(moduleName)];
     return require(moduleName);
@@ -11,57 +13,55 @@ var requireUncached = function(moduleName) {
 
 gulp.task('loadcustom', function(done){
     if(process.argv[2].indexOf('hybrid') !== -1){
-        base.vhostCustom = requireUncached(process.cwd() + '/gulp/hybrid.json');
+        overrideJSON = requireUncached(process.cwd() + '/gulp/hybrid.json');
     } else {
-        base.vhostCustom = requireUncached(process.cwd() + '/gulp/local.json');
+        overrideJSON = requireUncached(process.cwd() + '/gulp/local.json');
     }
     done();
 });
 
 gulp.task('loadconfig', ['loadcustom'], function(done){
-    if(!base.vhost){
+    if(!base.loadedConfig){
         var xhrConfig = new XMLHttpRequest();
         xhrConfig.onload = function(){
-            base.vhost = JSON.parse(this.responseText);
-            base.vhost = merge(base.vhost, base.vhostDefault);
-            base.vhost = merge(base.vhost, base.vhostCustom.config);
-            base.indexPage = base.vhost.JS_INDEX_PAGE + '.html';
+            base.config = merge(base.config, JSON.parse(this.responseText));
+            base.config = merge(base.config, overrideJSON.config);
+            base.loadedConfig = true;
             done();
         };
-        xhrConfig.open('get', base.vhostCustom.domain + '/v01/config.getvars?keys=' + base.vhostCustom.secret, true);
+        xhrConfig.open('get', overrideJSON.domain + '/v01/config.getvars?keys=' + overrideJSON.secret, true);
         xhrConfig.send();
     } else {
-        base.vhost = merge(base.vhost, base.vhostCustom.config);
-        base.indexPage = base.vhost.JS_INDEX_PAGE + '.html';
         done();
     }    
 });
 
 gulp.task('loaddict', ['loadcustom'], function(done){
-    if(!base.dict){
-        var xhrConfig = new XMLHttpRequest();
-        xhrConfig.onload = function(){
-            base.dict = JSON.parse(this.responseText);
-            base.dict = merge(base.dict, base.vhostCustom.dictionary);
+    if(!base.loadedDict){
+        var xhrDict = new XMLHttpRequest();
+        xhrDict.onload = function(){
+            base.dictionary = merge(base.dictionary, JSON.parse(this.responseText));
+            base.dictionary = merge(base.dictionary, overrideJSON.dictionary);
+            base.loadedDict = true;
             done();
         };
-        xhrConfig.open('get', base.vhostCustom.domain + '/v01/dictionary.getlist', true);
-        xhrConfig.send();
+        xhrDict.open('get', overrideJSON.domain + '/v01/dictionary.getlist', true);
+        xhrDict.send();
     } else {
-        base.dict = merge(base.dict, base.vhostCustom.dictionary);
         done();
     }
 });
 
 gulp.task('loadfooter', ['loadcustom'], function(done){
-    if(!base.footer){
-        var xhrConfig = new XMLHttpRequest();
-        xhrConfig.onload = function(){
-            base.footer = JSON.parse(this.responseText);
+    if(!base.loadedFooter){
+        var xhrFooter = new XMLHttpRequest();
+        xhrFooter.onload = function(){
+            base.footer = merge(base.footer, JSON.parse(this.responseText));
+            base.loadedFooter = true;
             done();
         };
-        xhrConfig.open('get', base.vhostCustom.domain + '/v01/footer.getlist', true);
-        xhrConfig.send();
+        xhrFooter.open('get', overrideJSON.domain + '/v01/footer.getlist', true);
+        xhrFooter.send();
     } else {
         done();
     }

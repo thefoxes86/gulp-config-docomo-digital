@@ -56,11 +56,11 @@ gulp.task('hybrid:installnpmmodules', ['hybrid:initpath'], function(done){
 });
 
 gulp.task('hybrid:transformindex', ['loadconfig', 'loaddict', 'loadfooter', 'hybrid:copymanifest'], function(){
-    return gulp.src('app/' + base.indexPage)
+    return gulp.src('app/' + base.config.JS_INDEX_PAGE)
     .pipe(removecode({ stage: true, hybrid: true }))
     .pipe(replace('<TMPL_VAR NAME=CONFIG>', JSON.stringify(vhost)))
-    .pipe(replace('<TMPL_VAR NAME=CONFIGOVERRIDEHYBRID>', JSON.stringify(base.vhostCustom.config)))
-    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(base.dict)))
+    .pipe(replace('<TMPL_VAR NAME=CONFIGOVERRIDEHYBRID>', JSON.stringify(base.config)))
+    .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(base.dictionary)))
     .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(base.footer)))
     .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'?>/gim, '<%= config.$1 %>'))
     .pipe(replace(/<TMPL_IF NAME="?'?(.*?)"?'?>/gim, '<% if (config.$1) { %>'))
@@ -69,7 +69,7 @@ gulp.task('hybrid:transformindex', ['loadconfig', 'loaddict', 'loadfooter', 'hyb
     .pipe(replace(/<\/TMPL_IF>/gim, '<% } %>'))
     .pipe(replace(/<\/TMPL_UNLESS>/gim, '<% } %>'))
     .pipe(replace(/<\/TMPL_ELSE>/gim, '<% } %>'))
-    .pipe(ejs({ config: base.vhost }))
+    .pipe(ejs({ config: base.config }))
     .pipe(rename('index-stage.html'))
     .pipe(gulp.dest('app/'));
 });
@@ -96,11 +96,11 @@ gulp.task('hybrid:stage', ['hybrid:copyindex', 'hybrid:copyappfiles', 'hybrid:in
 gulp.task('hybrid:mergehtml', function(){
     return gulp.src(['app/**/*.html', '!app/index*.html'])
     .pipe(ngTemplate({
-        module: base.vhostCustom.mainAngularModule,
+        module: base.mainAngularModule,
         standalone: false,
         filename: 'templates.js',
-        path: function (path, base) {
-            return 'app/' + path.replace(base, '');
+        path: function (path, pathBase) {
+            return 'app/' + path.replace(pathBase, '');
         }
     }))
     .pipe(gulp.dest('hybrid/www/'));

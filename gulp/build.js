@@ -21,14 +21,14 @@ gulp.task('build:clean', ['lint'], function(done){
 });
  
 gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
-    if(base.vhostCustom.mergeHtml){
+    if(base.mergeHtml){
         return gulp.src(['app/**/*.html', '!app/index*.html'])
         .pipe(ngTemplate({
-            module: base.vhostCustom.mainAngularModule,
+            module: base.mainAngularModule,
             standalone: false,
             filename: 'templates.js',
-            path: function (path, base) {
-                return base.vhostCustom.jsPrefix + path.replace(base, '');
+            path: function (path, pathBase) {
+                return base.jsPrefix + path.replace(pathBase, '');
             }
         }))
         .pipe(gulp.dest('dist/'));
@@ -53,7 +53,7 @@ gulp.task('build', ['build:html'], function () {
     
     .pipe(cssFilter)
     .pipe(cleanCSS())
-    .pipe(gulpif(base.vhostCustom.revCss, rev()))
+    .pipe(gulpif(base.revCss, rev()))
     .pipe(cssFilter.restore)
  
     .pipe(jsFilter)

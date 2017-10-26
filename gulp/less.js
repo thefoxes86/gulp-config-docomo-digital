@@ -9,7 +9,7 @@ var insert = require('gulp-insert');
 
 var base = require('./base');
 
-gulp.task('less:constantsImages', function(done){
+gulp.task('less:constantsImages', ['loadconfig'], function(done){
     var buffer = '// CREATED BY GULP, DON\'T COMMIT OR EDIT THIS FILE \n';
     lineReader.createInterface({
         input: fs.createReadStream(process.cwd() + '/../css/constants_images.conf')
@@ -21,7 +21,7 @@ gulp.task('less:constantsImages', function(done){
                 .replace(/":/gim, ':')
                 .replace(/    /gim, '\t')
                 .replace(/\t"/gim, '@')
-                .replace(/:"/gim, ':"' + base.vhostCustom.imagePrefix)
+                .replace(/:"/gim, ':"' + base.imagePrefix)
                 .replace(/",/gim, '"')
                 .trim();
             buffer += ';';
@@ -36,7 +36,7 @@ gulp.task('less:constantsImages', function(done){
 });
 
 gulp.task('less:copyapp', ['loadconfig'], function(){
-    gulp.src('../css/' + base.vhost.LESS_CSS_NAME)
+    gulp.src('../css/' + base.config.LESS_CSS_NAME)
     .pipe(replace(/'.\//gim, '\'../'))
     .pipe(replace(/@import 'custom_css.conf'/gim, ''))
     .pipe(replace(/@import '@{bower_import}'/gim, ''))

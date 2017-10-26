@@ -13,17 +13,17 @@ gulp.task('style:generate', ['loadconfig'], function() {
             sideNav: false,
             disableHtml5Mode: true
         }))
-        .pipe(gulp.dest('styleguide/' + base.vhost.LESS_CSS_NAME));
+        .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
 
 gulp.task('style:applystyles', ['loadconfig', 'less'], function() {
     return gulp.src(['app/app-stage.css'])
         .pipe(styleguide.applyStyles())
-        .pipe(gulp.dest('styleguide/' + base.vhost.LESS_CSS_NAME));
+        .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
 
 gulp.task('style', ['style:generate', 'style:applystyles'], function(){
-    gulp.src('./styleguide/' + base.vhost.LESS_CSS_NAME)
+    gulp.src('./styleguide/' + base.config.LESS_CSS_NAME)
     .pipe(webserver({
         port: 5000,
         open: '/'
