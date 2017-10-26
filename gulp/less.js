@@ -21,7 +21,7 @@ gulp.task('less:constantsImages', ['loadconfig'], function(done){
                 .replace(/":/gim, ':')
                 .replace(/    /gim, '\t')
                 .replace(/\t"/gim, '@')
-                .replace(/:"/gim, ':"' + base.imagePrefix)
+                .replace(/:"/gim, ':"' + base.settings.imagePrefix)
                 .replace(/",/gim, '"')
                 .trim();
             buffer += ';';

@@ -30,9 +30,9 @@ gulp.task('stage', ['stage:single'], function(){
     gulp.src('.')
     .pipe(webserver({
         port: 3000,
-        open: base.stageURL + '/app/index-stage.html',
+        open: base.settings.stageURL + '/app/index-stage.html',
         proxies: {
-            source: base.jsPrefix,
+            source: base.settings.jsPrefix,
             target: '/app'
         }
     }));

@@ -96,7 +96,7 @@ gulp.task('hybrid:stage', ['hybrid:copyindex', 'hybrid:copyappfiles', 'hybrid:in
 gulp.task('hybrid:mergehtml', function(){
     return gulp.src(['app/**/*.html', '!app/index*.html'])
     .pipe(ngTemplate({
-        module: base.mainAngularModule,
+        module: base.settings.mainAngularModule,
         standalone: false,
         filename: 'templates.js',
         path: function (path, pathBase) {

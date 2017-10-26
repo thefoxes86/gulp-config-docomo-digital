@@ -1,4 +1,5 @@
 module.exports = {
+    settings: {},
     config: {
         JS_PREFIX_APPS: "/",
 		JS_STAGE_URL: "/app/",

@@ -14,8 +14,10 @@ var requireUncached = function(moduleName) {
 gulp.task('loadcustom', function(done){
     if(process.argv[2].indexOf('hybrid') !== -1){
         overrideJSON = requireUncached(process.cwd() + '/gulp/hybrid.json');
+        base.settings = merge(base.settings, overrideJSON.settings);
     } else {
         overrideJSON = requireUncached(process.cwd() + '/gulp/local.json');
+        base.settings = merge(base.settings, overrideJSON.settings);
     }
     done();
 });
@@ -25,7 +27,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
         var xhrConfig = new XMLHttpRequest();
         xhrConfig.onload = function(){
             base.config = merge(base.config, JSON.parse(this.responseText));
-            base = merge(base, overrideJSON);
+            base.config = merge(base.config, overrideJSON.config);
             base.loadedConfig = true;
             done();
         };
@@ -41,7 +43,7 @@ gulp.task('loaddict', ['loadcustom'], function(done){
         var xhrDict = new XMLHttpRequest();
         xhrDict.onload = function(){
             base.dictionary = merge(base.dictionary, JSON.parse(this.responseText));
-            base = merge(base, overrideJSON);
+            base.dictionary = merge(base.dictionary, overrideJSON.dictionary);
             base.loadedDict = true;
             done();
         };
@@ -57,7 +59,7 @@ gulp.task('loadfooter', ['loadcustom'], function(done){
         var xhrFooter = new XMLHttpRequest();
         xhrFooter.onload = function(){
             base.footer = merge(base.footer, JSON.parse(this.responseText));
-            base = merge(base, overrideJSON);
+            base.footer = merge(base.footer, overrideJSON.footer);
             base.loadedFooter = true;
             done();
         };
