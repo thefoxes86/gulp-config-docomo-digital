@@ -19,7 +19,7 @@ gulp.task('build:clean', ['lint'], function(done){
     del(['dist/**/*.*'], { force: true }).then(function(){ done(); });
 });
  
-gulp.task('build:html', ['build:clean'], function(){
+gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
     if(base.vhostCustom.mergeHtml){
         return gulp.src(['app/**/*.html', '!app/index*.html'])
         .pipe(ngTemplate({
