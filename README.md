@@ -11,10 +11,12 @@ Configuration flags:
 - **imagePrefix** : prefix URL to prepend to images URL for css development in *gulp stage* task
 - **jsPrefix** : prefix URL to prepend to javascript files URL for, useful in *gulp stage* and *gulp build* task (i.e. /js/wl/webstore_news/app/)
 - **mainAngularModule** : name of main Angular module, useful for ngTemplates process in *gulp build* task
+- **fwName** : name of framework (lite, news, gameasy, html5game, etc)
 - **mergeHtml** : if true the templates will merge to build javascript file (*scripts.js*), else the templates will copy directly from app/ to dist/
-- **mergeHtml** : if true add revision number to css build
+- **revCss** : if true add revision number to css build
 - **config** : configuration keys will override configuration values taken from domain
-- **config** : dictionary keys will override dictionary values taken from domain
+- **dictionary** : dictionary keys will override dictionary values taken from domain
+- **footer** : footer keys will override footer values taken from domain
 
 ## config, dict and footer
 
