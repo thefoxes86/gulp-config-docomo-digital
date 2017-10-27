@@ -11,7 +11,7 @@
     },    
     
     "config": {
-        "JS_INDEX_PAGE": "index",
+        "JS_INDEX_PAGE": "index.html",
         "LESS_CSS_NAME": "app.less"
     },
     

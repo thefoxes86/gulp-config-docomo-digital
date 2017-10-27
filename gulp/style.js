@@ -4,7 +4,7 @@ var webserver = require('gulp-webserver');
 
 var base = require('./base');
 
-gulp.task('style:generate', ['loadconfig'], function() {
+gulp.task('style:generate', ['less'], function() {
     return gulp.src(['../css/**/*.less', '!../css/mixins/*.less'])
         .pipe(styleguide.generate({
             title: 'Styleguide',
@@ -16,7 +16,7 @@ gulp.task('style:generate', ['loadconfig'], function() {
         .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
 
-gulp.task('style:applystyles', ['loadconfig', 'less'], function() {
+gulp.task('style:applystyles', ['less'], function() {
     return gulp.src(['app/app-stage.css'])
         .pipe(styleguide.applyStyles())
         .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
