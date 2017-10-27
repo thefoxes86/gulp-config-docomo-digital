@@ -16,13 +16,13 @@ gulp.task('style:generate', ['less'], function() {
         .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
 
-gulp.task('style:applystyles', ['less'], function() {
-    return gulp.src(['app/app-stage.css'])
+gulp.task('style:applystyles', ['style:generate'], function() {
+    return gulp.src('app/app-stage.css')
         .pipe(styleguide.applyStyles())
         .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
 
-gulp.task('style', ['style:generate', 'style:applystyles'], function(){
+gulp.task('style', ['style:applystyles'], function(){
     gulp.src('./styleguide/' + base.config.LESS_CSS_NAME)
     .pipe(webserver({
         port: 5000,
