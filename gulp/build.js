@@ -24,7 +24,7 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
     if(base.settings.mergeHtml){
         return gulp.src(['app/**/*.html', '!app/index*.html'])
         .pipe(ngTemplate({
-            module: base.mainAngularModule,
+            module: base.settings.mainAngularModule,
             standalone: false,
             filename: 'templates.js',
             path: function (path, pathBase) {

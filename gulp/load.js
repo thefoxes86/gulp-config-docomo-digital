@@ -58,7 +58,7 @@ gulp.task('loadfooter', ['loadcustom'], function(done){
     if(!base.loadedFooter){
         var xhrFooter = new XMLHttpRequest();
         xhrFooter.onload = function(){
-            base.footer = merge(JSON.parse(this.responseText), base.dictionary);
+            base.footer = merge(JSON.parse(this.responseText), base.footer);
             base.footer = merge(base.footer, overrideJSON.footer);
             base.loadedFooter = true;
             done();
