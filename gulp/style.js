@@ -12,7 +12,7 @@ gulp.task('style:generate', ['less'], function() {
             overviewPath: 'README.md',
             sideNav: false,
             disableHtml5Mode: true,
-            appRoot: '/styleguide/' + base.fwName + '/' + base.config.LESS_CSS_NAME
+            appRoot: '/styleguide/' + base.settings.fwName + '/' + base.config.LESS_CSS_NAME
         }))
         .pipe(gulp.dest('styleguide/' + base.config.LESS_CSS_NAME));
 });
@@ -27,9 +27,9 @@ gulp.task('style', ['style:applystyles'], function(){
     gulp.src('.')
     .pipe(webserver({
         port: 5000,
-        open: '/styleguide/' + base.fwName + '/' + base.config.LESS_CSS_NAME,
+        open: '/styleguide/' + base.settings.fwName + '/' + base.config.LESS_CSS_NAME,
         proxies: [{
-            source: '/styleguide/' + base.fwName + '/',
+            source: '/styleguide/' + base.settings.fwName + '/',
             target: 'http://localhost:5000/styleguide/'
         }]
     }));
