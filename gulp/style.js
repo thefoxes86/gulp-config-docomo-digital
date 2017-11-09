@@ -5,7 +5,7 @@ var webserver = require('gulp-webserver');
 var base = require('./base');
 
 gulp.task('style:generate', ['less'], function() {
-    return gulp.src(['../css/**/*.less', '!../css/mixins/*.less'])
+    return gulp.src(base.settings.styleguideSrc)
         .pipe(styleguide.generate({
             title: 'Styleguide',
             server: false,

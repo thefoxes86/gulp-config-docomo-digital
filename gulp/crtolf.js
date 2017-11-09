@@ -21,4 +21,14 @@ gulp.task('crtolf:app', function(){
     .pipe(gulp.dest('app/'));
 });
 
-gulp.task('crtolf', ['crtolf:css', 'crtolf:app']);
+gulp.task('crtolf:styleguide', function(){
+    return gulp.src('styleguide/**/*.*')
+    .pipe(lec({ 
+        verbose: true, 
+        eolc: 'LF', 
+        encoding: 'utf8' 
+    }))
+    .pipe(gulp.dest('styleguide/'));
+});
+
+gulp.task('crtolf', ['crtolf:css', 'crtolf:app', 'crtolf:styleguide']);

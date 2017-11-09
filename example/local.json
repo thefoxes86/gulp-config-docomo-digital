@@ -8,7 +8,10 @@
         "mainAngularModule": "news",  
         "fwName": "lite",
         "mergeHtml": true,  
-        "revCss": false
+        "revCss": false,
+        "styleguideSrc": [
+            "../css/kss.less"
+        ]
     },    
     
     "config": {
