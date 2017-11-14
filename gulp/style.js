@@ -33,5 +33,5 @@ gulp.task('style', ['style:applystyles'], function(){
             target: 'http://localhost:5000/styleguide/'
         }]
     }));
-    gulp.watch(['../css/**/*'], ['style']);
+    gulp.watch(['../css/**/*'], ['style:applystyles']);
 }); 
