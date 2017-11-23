@@ -34,6 +34,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
         xhrConfig.open('get', overrideJSON.settings.domain + '/v01/config.getvars?keys=' + overrideJSON.settings.secret, true);
         xhrConfig.send();
     } else {
+        base.config = merge(base.config, overrideJSON.config);
         done();
     }    
 });
@@ -50,6 +51,7 @@ gulp.task('loaddict', ['loadcustom'], function(done){
         xhrDict.open('get', overrideJSON.settings.domain + '/v01/dictionary.getlist', true);
         xhrDict.send();
     } else {
+        base.dictionary = merge(base.dictionary, overrideJSON.dictionary);
         done();
     }
 });
@@ -66,6 +68,7 @@ gulp.task('loadfooter', ['loadcustom'], function(done){
         xhrFooter.open('get', overrideJSON.settings.domain + '/v01/footer.getlist', true);
         xhrFooter.send();
     } else {
+        base.footer = merge(base.footer, overrideJSON.footer);
         done();
     }
 });
