@@ -1,3 +1,6 @@
+# 3.1.3
+Bug fix gulp hybrid
+
 # 3.1.0
 Add styleguideSrc to local.json to manage styleguide:generate
 

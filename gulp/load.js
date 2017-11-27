@@ -26,6 +26,7 @@ gulp.task('loadconfig', ['loadcustom'], function(done){
     if(!base.loadedConfig){
         var xhrConfig = new XMLHttpRequest();
         xhrConfig.onload = function(){
+            base.overrideConfig = merge({}, base.config, overrideJSON.config);
             base.config = merge(JSON.parse(this.responseText), base.config);
             base.config = merge(base.config, overrideJSON.config);
             base.loadedConfig = true;

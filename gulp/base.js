@@ -8,6 +8,7 @@ module.exports = {
 		MIPSESSIONID: "1234567890",
 		JS_TEMPLATE_PREFIX: "/app"    
     },
+    overrideConfig: {},
     dictionary: {},
     footer: {}
 };
