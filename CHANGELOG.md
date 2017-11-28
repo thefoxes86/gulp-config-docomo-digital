@@ -1,5 +1,11 @@
-# 3.1.3
+# 3.2.0
+Template var with ESCAPE=AS_JSON are interpreted correctly in gulp:stage task
+
+# 3.1.2 / 3.1.3
 Bug fix gulp hybrid
+
+# 3.1.1
+Bug fix: reload config/dict/footer if local.json is edited
 
 # 3.1.0
 Add styleguideSrc to local.json to manage styleguide:generate

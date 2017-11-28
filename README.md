@@ -4,7 +4,10 @@
 
 Copy **example/local.json** from this repository to **js/gulp/local.json**.
 
-Configuration flags:
+Install SwitchyOmega Chrome extension (https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif), go to extensions Options, "Import/Export" and load **SwitchyOmega.bak** from this repository to "Restore from file" field.
+
+## settings
+
 - **domain** : domain to get configuration, dictionary and footer
 - **secret** : secret id to get configuration
 - **stageURL** : URL to open when run *gulp stage* (usually *http://localhost:3000* or same value of *domain*, in this case proxy configuration is mandatory)
@@ -18,11 +21,11 @@ Configuration flags:
 - **dictionary** : dictionary keys will override dictionary values taken from domain
 - **footer** : footer keys will override footer values taken from domain
 
-## config, dict and footer
+## priority for settings, config, dictionary and footer
 
-Priority for configuration, dictionary and footer:
-1. gulp/config.json or hybrid.json
-2. domain configuration/dictionary/footer
+Priority for settings, configuration, dictionary and footer:
+1. gulp/config.json and gulp/hybrid.json
+2. domain configuration/dictionary/footer, loaded from API
 3. default values from this repository (see gulp/base.js)
 
 ## tasks
