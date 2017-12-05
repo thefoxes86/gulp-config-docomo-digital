@@ -14,7 +14,7 @@ gulp.task('stage:single', ['loadconfig', 'loaddict', 'loadfooter', 'less'], func
     .pipe(replace('<TMPL_VAR NAME=CONFIG>', JSON.stringify(base.config)))
     .pipe(replace('<TMPL_VAR NAME=DICTIONARY>', JSON.stringify(base.dictionary)))
     .pipe(replace('<TMPL_VAR NAME=FOOTER_LINKS>', JSON.stringify(base.footer)))
-    .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'? ESCAPE=AS_JSON>/gim, '<%- config.$1 %>'))
+    .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'? ESCAPE=AS_JSON>/gim, '<%- JSON.stringify(config.$1) %>'))
     .pipe(replace(/<TMPL_VAR NAME="?'?(.*?)"?'?>/gim, '<%= config.$1 %>'))
     .pipe(replace(/<TMPL_IF NAME="?'?(.*?)"?'?>/gim, '<% if (config.$1) { %>'))
     .pipe(replace(/<TMPL_UNLESS NAME="?'?(.*?)"?'?>/gim, '<% if (!config.$1) { %>'))
