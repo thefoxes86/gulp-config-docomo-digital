@@ -30,6 +30,7 @@ Priority for settings, configuration, dictionary and footer:
 
 ## tasks
 
+- **gulp beautify** : run beautifier for Javascript files
 - **gulp lint** : run eslint on JavaScript files on app/ folder (if you add --fix then eslint fix some possible errors)
 - **gulp crtolf** : convert cr to lf
 - **gulp stage** : run local server to debug app/ folder (set config.json before, if necessary)

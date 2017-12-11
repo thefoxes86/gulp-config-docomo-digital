@@ -31,6 +31,7 @@
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-beautify": "^2.0.1",
     "gulp-clean-css": "^3.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-ejs": "^3.0.1",

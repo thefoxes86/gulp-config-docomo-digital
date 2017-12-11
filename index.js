@@ -1,4 +1,5 @@
 require('./gulp/base');
+require('./gulp/beautify');
 require('./gulp/crtolf');
 require('./gulp/lint');
 require('./gulp/load');

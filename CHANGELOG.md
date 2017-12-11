@@ -1,29 +1,14 @@
+# 3.3.0
+Gulp beautify task
+
 # 3.2.0
 Template var with ESCAPE=AS_JSON are interpreted correctly in gulp:stage task
-
-# 3.1.2 / 3.1.3
-Bug fix gulp hybrid
-
-# 3.1.1
-Bug fix: reload config/dict/footer if local.json is edited
 
 # 3.1.0
 Add styleguideSrc to local.json to manage styleguide:generate
 
-# 3.0.1
-Fix gulp build:html (merge=true) & loadfooter
-
 # 3.0.0
 Refactoring of gulp tasks and base
 
-# 2.1.2
-Bug fix gulp hybrid
-
-# 2.1.1
-Bug fix: constants-images.conf process managed tab but not spaces
-
 # 2.1.0
 Gulp lint with "--fix" option fix soft lint errors
-
-# 2.0.1
-Bug fix: when the developer changed a LESS file, Gulp process didn't update app-stage.less automatically
