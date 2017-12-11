@@ -11,8 +11,7 @@ gulp.task('lint', function(){
     if(argv.fix){
         return gulp.src('app/**/*.js')
         .pipe(eslint({
-            fix: true,
-            quiet: true
+            fix: true
         }))
         .pipe(eslint.format())
         .pipe(gulpIf(isFixed, gulp.dest('app')));
