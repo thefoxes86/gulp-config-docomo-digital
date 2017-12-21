@@ -24,19 +24,17 @@ gulp.task('dist:single', ['loadconfig', 'loaddict', 'loadfooter', 'less'], funct
         .pipe(replace(/<\/TMPL_UNLESS>/gim, '<% } %>'))
         .pipe(replace(/<\/TMPL_ELSE>/gim, '<% } %>'))
         .pipe(ejs({ config: base.config }))
+        .pipe(replace(/app-stage.css/gim, '../app/app-stage.css'))
         .pipe(rename('index-stage.html'))
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('dist:copy', function () {
-    gulp.src('./app/app-stage.css').pipe(gulp.dest('dist/'));
-});
-
 gulp.task('dist:server', ['loadconfig'], function () {
-    gulp.src('.').pipe(webserver({
-        port: 3000,
-        open: base.settings.stageURL + '/dist/index-stage.html'
-    }));
+    gulp.src('.')
+        .pipe(webserver({
+            port: 3000,
+            open: base.settings.stageURL + '/dist/index-stage.html'
+        }));
 });
 
-gulp.task('dist', sequence('dist:single', 'dist:copy', 'dist:server'));
+gulp.task('dist', sequence('dist:single', 'dist:server'));
