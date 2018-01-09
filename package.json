@@ -30,6 +30,8 @@
     "del": "^2.2.2",
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.2.0",
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-beautify": "^2.0.1",
