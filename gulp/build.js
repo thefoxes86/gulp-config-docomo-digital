@@ -59,8 +59,8 @@ gulp.task('build', ['build:html'], function () {
         .pipe(cssFilter.restore)
 
         .pipe(jsScriptsFilter)
-        .pipe(sourcemaps.init())
         .pipe(babel({ presets: ['env'] }))
+        .pipe(sourcemaps.init())
         .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(rev())
