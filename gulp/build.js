@@ -14,6 +14,7 @@ var revReplace = require('gulp-rev-replace');
 var lec = require('gulp-line-ending-corrector');
 var gulpif = require('gulp-if');
 var sequence = require('gulp-sequence');
+var babel = require('gulp-babel');
 
 var base = require('./base');
 
