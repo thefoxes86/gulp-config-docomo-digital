@@ -7,5 +7,6 @@ require('./gulp/less');
 require('./gulp/style');
 
 require('./gulp/stage');
+require('./gulp/dist');
 require('./gulp/build');
 require('./gulp/hybrid');
