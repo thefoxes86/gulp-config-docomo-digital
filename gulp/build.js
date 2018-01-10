@@ -86,5 +86,3 @@ gulp.task('build', ['build:html'], function () {
 
         .pipe(gulp.dest('dist/'));
 });
-
-gulp.task('build-test', sequence('build', 'dist'));

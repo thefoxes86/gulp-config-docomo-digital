@@ -38,3 +38,5 @@ gulp.task('dist:server', ['loadconfig'], function () {
 });
 
 gulp.task('dist', sequence('dist:single', 'dist:server'));
+
+gulp.task('serve-dist', sequence('build', 'dist'));
