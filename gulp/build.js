@@ -41,8 +41,8 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
 });
 
 gulp.task('build', ['build:html'], function () {
-    var jsScriptsFilter = filter('**/scripts.js', { restore: true });
-    var jsVendorFilter = filter('**/vendor.js', { restore: true });
+    var jsScriptsFilter = filter('**/*scripts.js', { restore: true });
+    var jsVendorFilter = filter('**/*vendor.js', { restore: true });
     var jsHybridFilter = filter('**/hybrid.js', { restore: true });    
     var cssFilter = filter('**/*.css', { restore: true });
     var htmlFilter = filter('**/*.html', { restore: true });
