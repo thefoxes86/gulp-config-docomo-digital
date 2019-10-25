@@ -19,7 +19,7 @@ var base = require('./base');
 gulp.task('build:clean', ['lint'], function(done){
     del(['dist/**/*.*'], { force: true }).then(function(){ done(); });
 });
- 
+
 gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
     if(base.settings.mergeHtml){
         return gulp.src(['app/**/*.html', '!app/index*.html'])
@@ -35,9 +35,9 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
     } else {
         return gulp.src(['app/**/*.html', '!app/index*.html'])
         .pipe(gulp.dest('dist/'));
-    }    
+    }
 });
- 
+
 gulp.task('build', ['build:html'], function () {
     var jsFilter = filter('**/*.js', { restore: true });
     var cssFilter = filter('**/*.css', { restore: true });
@@ -50,12 +50,12 @@ gulp.task('build', ['build:html'], function () {
     .pipe(replace(' templates--> ', '>'))
     .pipe(useref())
     .pipe(removecode({ prod: true }))
-    
+
     .pipe(cssFilter)
     .pipe(cleanCSS())
     .pipe(gulpif(base.settings.revCss, rev()))
     .pipe(cssFilter.restore)
- 
+
     .pipe(jsFilter)
     .pipe(sourcemaps.init())
     .pipe(ngAnnotate())
@@ -63,15 +63,15 @@ gulp.task('build', ['build:html'], function () {
     .pipe(rev())
     .pipe(sourcemaps.write('.'))
     .pipe(jsFilter.restore)
- 
+
     .pipe(revReplace({
         prefix: '<TMPL_VAR NAME=JS_BUILD_URL>'
     }))
- 
+
     .pipe(htmlFilter)
     .pipe(replace('.js.map', '.js'))
     .pipe(lec({ verbose: false, eolc: 'LF', encoding: 'utf8' }))
     .pipe(htmlFilter.restore)
-    
+
     .pipe(gulp.dest('dist/'));
 });
