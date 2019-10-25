@@ -43,7 +43,6 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
 gulp.task('build', ['build:html'], function () {
     var jsScriptsFilter = filter('**/scripts.js', { restore: true });
     var jsVendorFilter = filter('**/vendor.js', { restore: true });
-    var jsHybridFilter = filter('**/hybrid.js', { restore: true });    
     var cssFilter = filter('**/*.css', { restore: true });
     var htmlFilter = filter('**/*.html', { restore: true });
     return gulp.src(['app/index*.html', '!app/index-stage.html'])
@@ -68,14 +67,6 @@ gulp.task('build', ['build:html'], function () {
         .pipe(rev())
         .pipe(sourcemaps.write('.'))
         .pipe(jsScriptsFilter.restore)
-
-        .pipe(jsHybridFilter)
-        .pipe(sourcemaps.init())
-        .pipe(ngAnnotate())
-        .pipe(uglify())
-        .pipe(rev())
-        .pipe(sourcemaps.write('.'))
-        .pipe(jsHybridFilter.restore)
 
         .pipe(jsVendorFilter)
         .pipe(sourcemaps.init())
