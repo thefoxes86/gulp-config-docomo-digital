@@ -6,7 +6,6 @@ var less = require('gulp-less');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 var insert = require('gulp-insert');
-var removecode = require('gulp-remove-code');
 
 var base = require('./base');
 
@@ -47,7 +46,6 @@ gulp.task('less', ['less:constantsImages'], function(){
     gulp.src('../css/' + base.config.LESS_CSS_NAME)
     .pipe(replace(/@import 'custom_css.conf'/gim, ''))
     .pipe(replace(/@import '@{bower_import}'/gim, ''))
-    .pipe(removecode({ stage: true, commentStart: '/*', commentEnd: '*/' }))
     .pipe(insert.prepend('@import \'./gulp/constants_images.less\'; \n\n'))
     .pipe(insert.append('\n\n @import \'./gulp/local.less\';'))
     .pipe(rename('app-stage.less'))
