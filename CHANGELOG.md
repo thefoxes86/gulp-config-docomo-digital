@@ -1,6 +1,3 @@
-# 3.4.0
-ES6 support
-
 # 3.3.0
 Gulp beautify task
 
