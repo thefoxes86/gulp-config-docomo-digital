@@ -40,7 +40,7 @@ gulp.task('build:html', ['build:clean', 'loadcustom'], function(){
 
 gulp.task('build', ['build:html'], function () {
     var jsFilter = filter('**/*.js', { restore: true });
-    var jsFilterMin = filter('!app/*.nomin.js', { restore: true });
+    var jsFilterMin = filter(['**/*.js', '!app/*.nomin.js'], { restore: true });
     var cssFilter = filter('**/*.css', { restore: true });
     var htmlFilter = filter('**/*.html', { restore: true });
     return gulp.src(['app/index*.html', '!app/index-stage.html'])
