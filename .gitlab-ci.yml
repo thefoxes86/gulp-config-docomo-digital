@@ -1,0 +1,25 @@
+image: node:10.16
+
+.release-rules:
+  rules: 
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_BRANCH != "master"
+
+stages: 
+  - install
+  - release
+
+install-job:
+  stage: install
+  rules:
+    - !reference [.release-rules, rules]
+  script:
+    - npm run build
+
+release_job:
+  stage: release
+  rules:
+    - !reference [.release-rules, rules]
+  script:
+    - mv package.json package-2.json && cat package-2.json | sed -e 's/0.0.0-autorevision/'"$CI_COMMIT_TAG"'/' > package.json && rm -fr package-2.json 
+    - npm publish
+  
